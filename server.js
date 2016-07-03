@@ -4,11 +4,16 @@ var morgan = require("morgan");
 var app = express();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
-var router = require("./routes.js");
+var router = require("./routes.js")(io);
+var favicon = require("serve-favicon");
 
 app.set("PORT", 6363);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("dev"));
+app.use(favicon(path.join(__dirname, "public/images/favicon.png")))
+
+
+
 app.use("/", router);
 
 
