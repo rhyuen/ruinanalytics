@@ -1,6 +1,6 @@
-var express = require("express");
-var path = require("path");
-var config = require("./config.js");
+const express = require("express");
+const path = require("path");
+const config = require("./config.js");
 
 module.exports = function(io){
   var router = express.Router();
