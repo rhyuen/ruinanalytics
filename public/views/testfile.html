@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>testfile</h1>
+        <hr></hr>
+        <div>
+            Values Delivered.
+            <div>Active State Time Record</div>
+            <div></div>
+            <div></div>
+        </div>
+        <script type = "text/javascript">
+            fetch("/log",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    screenWidth: window.innerWidth, 
+                    screenHeight: window.innerHeight,
+                    maxWidth: screen.availWidth,
+                    maxHeight: screen.availHeight,
+                    os: navigator.platform,
+                    language: navigator.language,                    
+                    ver: navigator.appVersion
+                })
+            })
+            .then(function(res){ 
+                console.log(res.json());                
+            })
+            .catch(function(res){ 
+                console.log(res);
+            })                        
+        </script>
+    </body>
+</html>

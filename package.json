@@ -5,21 +5,18 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha -S",
-    "start": "nodemon server.js",
-    "dev": "NODE_ENV=development nodemon server.js",
-    "prod": "NODE_ENV=production forever start server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://robertyuen008@ruinanalytics.scm.azurewebsites.net:443/ruinanalytics.git"
-  },
+    "start": "cross-env NODE_ENV=production nodemon server.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "prod": "cross-env NODE_ENV=production forever start index.js"
+  },  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.0",
-    "chai": "^3.5.0",
+    "chai": "^4.1.0",
     "compression": "^1.6.2",
+    "cross-env": "^5.0.1",
     "express": "4.14.0",
     "forever": "^0.15.3",
     "helmet": "^3.4.0",
@@ -32,6 +29,7 @@
     "socket.io": "1.4.8"
   },
   "devDependencies": {
+    "chai-http": "^3.0.0",
     "nodemon": "1.9.2"
   }
 }
