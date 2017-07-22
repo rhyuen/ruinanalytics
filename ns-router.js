@@ -20,15 +20,16 @@ router.get("/testfile", (req, res) => {
 
 
 
-router.post("/log", (req, res) => {  
+router.post("/log", (req, res) => {    
   res.header("Content-type", "application/json; charset=utf-8");
+
   //TODO:DURATION of VISIT
   //TODO: Validate/Sanitize Text
   //TODO: KeyLOG Event
 
   const newestLog = new Log({
     os: req.body.os ||"No OS obtained.",
-    ip: req.ip || "No ip obtained",
+    ip: req.ips|| "No ip obtained",
     userAgent: req.headers["user-agent"] || "No browser obtained.",
     ver: req.body.ver || "No Browser verserion retrieved.",
     screenHeight: req.body.screenHeight || "No Screen height retrieved.",
@@ -36,7 +37,7 @@ router.post("/log", (req, res) => {
     maxScreenWidth: req.body.maxWidth || "No Max Screen Width retrieved.",
     maxScreenHeight: req.body.maxHeight || "No Max Screen Height retrieved."
   });
-
+  
   console.log(req.headers["referrer"]);  
   newestLog.save((err, msg) => {
     if(err){

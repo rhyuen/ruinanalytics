@@ -11,6 +11,7 @@ const router = require("./routes.js")(io);
 const favicon = require("serve-favicon");
 const nsrouter = require("./ns-router.js");
 
+app.set("trust proxy", true);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

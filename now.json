@@ -3,8 +3,12 @@
     "alias": [
         "ruinanalytics"
     ],
-    "engine": "8.1",
+    "engines": {
+        "node": "^8.1.4"
+    },
     "env": {
         "db": "@ruinanalyticsdb"
-    }
+    },
+    "public": "true",
+    "type": "npm"
 }
