@@ -3,5 +3,8 @@
     "alias": [
         "ruinanalytics"
     ],
-    "engine": "8.1"
+    "engine": "8.1",
+    "env": {
+        "db": "@ruinanalyticsdb"
+    }
 }

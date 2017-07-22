@@ -21,10 +21,11 @@ router.get("/testfile", (req, res) => {
 
 
 router.post("/log", (req, res) => {  
-  res.header("Content-type", "application/json");
+  res.header("Content-type", "application/json; charset=utf-8");
   //TODO:DURATION of VISIT
   //TODO: Validate/Sanitize Text
-  //TODO: KeyLOG Event  
+  //TODO: KeyLOG Event
+
   const newestLog = new Log({
     os: req.body.os ||"No OS obtained.",
     ip: req.ip || "No ip obtained",
