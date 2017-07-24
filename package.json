@@ -8,7 +8,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "prod": "cross-env NODE_ENV=production forever start index.js"
-  },  
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -26,7 +26,9 @@
     "morgan": "1.7.0",
     "nconf": "^0.8.4",
     "serve-favicon": "2.3.0",
-    "socket.io": "1.4.8"
+    "serve-static": "^1.12.3",
+    "socket.io": "1.4.8",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "chai-http": "^3.0.0",

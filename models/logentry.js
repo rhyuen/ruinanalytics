@@ -8,7 +8,8 @@ const logEntrySchema = mongoose.Schema({
   screenHeight: {type: Number},
   screenWidth: {type: Number},
   maxScreenWidth: {type: Number},
-  maxScreenHeight: {type: Number},  
+  maxScreenHeight: {type: Number},
+  eventLog: {type: Array, default: []}
 }, {
   timestamps: {
     createdAt: "created_at"

@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("./models/user.js");
 const Log = require("./models/logentry.js");
 const path = require("path");
+const serveStatic = require("serve-static");
 
 router.get("/", (req, res) => {
   res.status(200).json({name: "ruinanalytics", lastUpdate: "July 16, 2017"});
@@ -35,18 +36,31 @@ router.post("/log", (req, res) => {
     screenHeight: req.body.screenHeight || "No Screen height retrieved.",
     screenWidth: req.body.screenWidth || "No Screen Width Retrieved",
     maxScreenWidth: req.body.maxWidth || "No Max Screen Width retrieved.",
-    maxScreenHeight: req.body.maxHeight || "No Max Screen Height retrieved."
+    maxScreenHeight: req.body.maxHeight || "No Max Screen Height retrieved.",
+    eventLog: []
   });
-  
-  console.log(req.headers["referrer"]);  
+    
   newestLog.save((err, msg) => {
     if(err){
       console.error(err);
-    }else{      
-      console.log("Wrtitten to DB");
-      res.status(200).send(msg);
+    }else{            
+      console.log("LOGGED RESULT %s", msg._id);
+      res.status(200).json({_id: msg._id, desc: "Log token for user."});
     }
   });        
+});
+
+router.put("/log/:id", (req, res) => {
+  console.log("PARAM %s", req.params.id);
+  console.log("BODY %s", req.body.data);
+  Log.findOneAndUpdate({_id: req.params.id}, {$set: {eventLog: req.body.data}}, (err, item) => {
+    if(err){
+      console.error(err);
+    }else{
+      console.log("Update success %s", item);
+      res.status(200).json({desc: "Update success.", body: item});
+    }
+  });
 });
 
 module.exports = router;
