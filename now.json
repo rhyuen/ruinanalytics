@@ -9,6 +9,6 @@
     "env": {
         "db": "@ruinanalyticsdb"
     },
-    "public": "true",
+    "public": true,
     "type": "npm"
 }

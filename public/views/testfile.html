@@ -18,14 +18,26 @@
                 <span><a href = "#">Another link to somewhere else.</a></span>
             </div>
         </div>
+        
+        
         <script type = "text/javascript">
-            let events = ["RandomClientEvent"];
+            let startDate = new Date();
+            let visit_data = {
+                log_id: "", 
+                date: startDate,                 
+                duration: "", 
+                eventLog: []
+            };
+            
             let log_id = "";
 
-            window.addEventListener("beforeunload", (event) => {
-                event.returnValue = "Hello Sir!";
-                event.preventDefault();
-                console.log("hi");
+            function setLogId(id){
+                visit_data.log_id = id;
+            }
+
+            window.addEventListener("beforeunload", (event) => {                
+                event.preventDefault();                
+                visit_data.duration = new Date() - startDate;                
                 fetch(`/log/${log_id}`, {
                     headers: {
                         "Accept": "application/json",
@@ -33,7 +45,7 @@
                     },
                     method: "PUT",
                     body: JSON.stringify({
-                        data: events
+                        data: visit_data
                     })
                 })
                 .then((res) => {
@@ -66,18 +78,18 @@
             .then(function(res){                 
                 return res.json();                
             })
-            .then((res) => {
-                console.log(res._id);
+            .then((res) => {                
                  log_id = res._id;
+                 visit_data.log_id = res._id;
             })
             .catch(function(res){ 
                 console.log(res);
             });
 
             document.addEventListener("keypress", (evt) => {                                
-                let eventToLog = {letter: Strong.fromCharCode(evt.which), time: new Date().toLocaleTimeString()};
-                events.push(eventToLog);
-                console.log(events);
+                let eventToLog = {letter: String.fromCharCode(evt.which), time: new Date().toLocaleTimeString()};
+                visit_data.eventLog.push(eventToLog);
+                console.log("Event Logged %s", String.fromCharCode(evt.which));
             });
             
         </script>
